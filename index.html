@@ -1,23 +1,132 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Интерактивная книга</title>
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(120deg,#f6f9fc,#e9eff5);display:flex;justify-content:center;align-items:center;height:100vh;}
-.book{width:400px;height:550px;background:white;border-radius:16px;box-shadow:0 20px 40px rgba(0,0,0,0.15);padding:25px;animation:fadeIn 1.2s ease;}
-h1{text-align:center;}
-p{font-size:16px;line-height:1.6;}
-.btn{display:block;margin:30px auto 0;padding:12px 24px;background:#6c63ff;color:white;text-decoration:none;border-radius:25px;text-align:center;transition:0.3s;}
-.btn:hover{background:#554ee0;}
-@keyframes fadeIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
+  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Comfortaa', cursive, Arial, sans-serif;
+    background: linear-gradient(120deg, #f6f9fc, #e9eff5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 15px; /* Чтобы на мобильных не упереться в края */
+  }
+
+  .book {
+    width: 90vw;  /* 90% ширины экрана для адаптивности */
+    max-width: 450px;
+    min-height: 650px;  /* увеличили высоту */
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    padding: 30px 25px 40px;
+    animation: fadeIn 1.2s ease;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* Если контента много, будет скролл */
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 85%;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #6c63ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: background 0.3s;
+    box-shadow: 0 6px 12px rgba(108, 99, 255, 0.4);
+    user-select: none;
+  }
+  .btn:hover {
+    background: #554ee0;
+    box-shadow: 0 8px 20px rgba(85, 78, 224, 0.6);
+  }
+
+  /* Картинки */
+  .illustrations {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .illustrations img {
+    width: 120px;
+    height: 120px;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  .illustrations img:hover {
+    transform: scale(1.1);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Адаптив для телефонов */
+  @media (max-width: 400px) {
+    .btn {
+      padding: 12px 24px;
+      font-size: 1rem;
+    }
+    .illustrations img {
+      width: 90px;
+      height: 90px;
+    }
+  }
 </style>
 </head>
 <body>
-<div class="book">
-<h1>📖 Добро пожаловать</h1>
-<p>Это интерактивная книга для детей и взрослых. Здесь вас ждут истории, анимации и игры.</p>
-<a class="btn" href="page1.html">Начать →</a>
-</div>
+  <div class="book">
+    <h1>📖 Добро пожаловать</h1>
+    <p>Это интерактивная книга для детей и взрослых. Здесь вас ждут истории, анимации и игры.</p>
+    <a class="btn" href="page1.html">Начать →</a>
+
+    <div class="illustrations">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=150&q=80" alt="Иллюстрация 1" />
+      <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=150&q=80" alt="Иллюстрация 2" />
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=150&q=80" alt="Иллюстрация 3" />
+    </div>
+  </div>
 </body>
 </html>

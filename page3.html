@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Страница 3 - Игра</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #fff1eb, #ace0f9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .page {
+      width: 500px;
+      height: 600px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      padding: 20px;
+      position: relative;
+      animation: fadeIn 0.8s ease;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    #person {
+      width: 100px;
+      height: 150px;
+      background: url('https://i.imgur.com/1gIhS3N.png') no-repeat center/contain;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .object {
+      width: 40px;
+      height: 20px;
+      background: #ccc;
+      border-radius: 5px;
+      position: absolute;
+      cursor: grab;
+    }
+
+    #cigarette { top: 250px; left: 200px; }
+    #soda { top: 300px; left: 100px; background: #1e90ff; }
+
+    #smoke {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, black 0%, transparent 70%);
+      position: absolute;
+      top: 220px;
+      left: 195px;
+      border-radius: 50%;
+      animation: smoke 1s infinite alternate;
+      pointer-events: none;
+    }
+
+    #trash {
+      width: 60px;
+      height: 60px;
+      background: url('https://i.imgur.com/6kQfJ2Q.png') no-repeat center/contain;
+      position: absolute;
+      bottom: 20px;
+      left: 220px;
+    }
+
+    .nav {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;

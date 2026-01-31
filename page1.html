@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Страница 1</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #fff1eb, #ace0f9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .page {
+      width: 400px;
+      height: 550px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      padding: 25px;
+      animation: slideIn 0.8s ease;
+      position: relative;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .nav {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      background: #6c63ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .btn.disabled {
+      background: #ccc;
+      pointer-events: none;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <h2>🌟 Страница 1</h2>
+    <p>
+      Это первая страница нашей интерактивной книги.
+      Здесь может быть текст, картинки, задания и игры.
+    </p>
+
+    <p>
+      Попробуй пролистать дальше 👉
+    </p>
+
+    <div class="nav">
+      <a class="btn disabled" href="#">← Назад</a>
+      <a class="btn" href="page2.html">Дальше →</a>
+    </div>
+  </div>
+
+</body>
+</html>

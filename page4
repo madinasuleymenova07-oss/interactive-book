@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Видео по клику</title>
+
+<style>
+    body {
+        font-family: 'Comfortaa', sans-serif;
+        background: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .video-container {
+        width: 300px; /* можно менять */
+        cursor: pointer;
+    }
+
+    .video-container img,
+    .video-container video {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+</style>
+</head>
+
+<body>
+
+<div class="video-container">
+    <!-- КАРТИНКА -->
+    <img id="bacteriaImg" src="img/bacteria.png" alt="bacteria">
+
+    <!-- ВИДЕО -->
+    <video id="soapVideo" style="display:none;">
+        <source src="img/soap.video" type="video/mp4">
+    </video>
+</div>
+
+<script>
+    const img = document.getElementById("bacteriaImg");
+    const video = document.getElementById("soapVideo");
+
+    img.onclick = function () {
+        img.style.display = "none";
+        video.style.display = "block";
+        video.play();
+    };
+</script>
+
+</body>
+</html>

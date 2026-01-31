@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Страница 2</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #fdfbfb, #ebedee);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .page {
+      width: 420px;
+      height: 580px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      padding: 25px;
+      position: relative;
+      animation: fadeIn 0.8s ease;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .task {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .options button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px;
+      border: none;
+      border-radius: 20px;
+      font-size: 15px;
+      cursor: pointer;
+      background: #6c63ff;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .options button:hover {
+      background: #554ee0;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      min-height: 24px;
+    }
+
+    .nav {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      background: #999;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <h2>🧠 Задание</h2>
+
+  <div class="task">
+    <p><strong>Вопрос:</strong>  
+    Что НЕ относится к временам года?</p>
+  </div>
+
+  <div class="options">
+    <button onclick="check(false)">Весна</button>
+    <button onclick="check(false)">Осень</button>
+    <button onclick="check(true)">Утро</button>
+    <button onclick="check(false)">Зима</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <div class="nav">
+    <a class="btn" href="page1.html">← Назад</a>
+    <a class="btn" href="page3.html">Дальше →</a>
+  </div>
+</div>
+
+<script>
+  function check(correct) {
+    const result = document.getElementById("result");
+    if (correct) {
+      result.style.color = "green";
+      result.textContent = "✅ Молодец! Правильный ответ.";
+    } else {
+      result.style.color = "red";
+      result.textContent = "❌ Попробуй ещё раз.";
+    }
+  }
+</script>
+
+</body>
+</html>

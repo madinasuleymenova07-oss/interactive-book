@@ -2,11 +2,9 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Страница 3 - Игра</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
-
+  @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
   body {
     margin: 0;
     font-family: 'Comfortaa', cursive, Arial, sans-serif;
@@ -15,165 +13,110 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 15px;
   }
-
   .page {
-    width: 90vw;
-    max-width: 550px;
-    min-height: 700px;
+    width: 520px;
+    height: 650px;
     background: white;
     border-radius: 24px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-    padding: 30px 30px 50px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    padding: 30px 40px 50px 40px;
     position: relative;
     animation: fadeIn 0.8s ease;
-    box-sizing: border-box;
     text-align: center;
-    overflow: hidden;
+    box-sizing: border-box;
   }
-
   h2 {
     margin-top: 0;
     font-weight: 700;
-    font-size: 2rem;
-    color: #333;
+    font-size: 2.1rem;
+    margin-bottom: 12px;
   }
-
   p {
     font-size: 1.1rem;
     color: #555;
     margin-bottom: 30px;
   }
-
-  /* Персонаж */
   #person {
-    width: 120px;
-    height: 180px;
-    background: url('https://i.imgur.com/9zGjvgP.png') no-repeat center/contain; /* Пример мужчины с сигаретой у скамейки */
-    margin: 0 auto 25px;
+    width: 140px;
+    height: 210px;
+    background: url('https://i.imgur.com/b7X9Z3m.png') no-repeat center/contain;
+    margin: 0 auto 30px;
     position: relative;
   }
-
-  /* Дым */
-  #smoke {
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, transparent 70%);
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    margin-left: -40px;
-    border-radius: 50%;
-    animation: smoke 1.5s infinite alternate;
-    pointer-events: none;
-    filter: blur(3px);
-  }
-
-  /* Объекты для перетаскивания */
   .object {
-    width: 50px;
+    width: 60px;
     height: 30px;
+    background: #ccc;
     border-radius: 10px;
     position: absolute;
     cursor: grab;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    transition: transform 0.2s;
+    user-select: none;
+    transition: box-shadow 0.3s ease;
   }
   .object:active {
     cursor: grabbing;
-    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   }
-
   #cigarette {
-    top: 300px;
-    left: 140px;
-    background: url('https://i.imgur.com/4lRxlEJ.png') no-repeat center/contain; /* сигарета */
+    top: 350px;
+    left: 190px;
+    background: url('https://i.imgur.com/7HpNVVg.png') no-repeat center/contain;
   }
   #soda {
-    top: 360px;
-    left: 230px;
-    background: url('https://i.imgur.com/0GBnJsB.png') no-repeat center/contain; /* бутылка с содой */
+    top: 400px;
+    left: 80px;
+    background: url('https://i.imgur.com/Ey6G0Qp.png') no-repeat center/contain;
   }
-
-  /* Корзина */
+  #smoke {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(0,0,0,0.7) 0%, transparent 70%);
+    position: absolute;
+    top: 320px;
+    left: 185px;
+    border-radius: 50%;
+    animation: smoke 1.2s infinite alternate;
+    pointer-events: none;
+  }
   #trash {
     width: 80px;
     height: 80px;
-    background: url('https://i.imgur.com/6kQfJ2Q.png') no-repeat center/contain;
+    background: url('https://i.imgur.com/y3H2bGU.png') no-repeat center/contain;
     position: absolute;
-    bottom: 30px;
-    right: 40px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    border-radius: 16px;
-    transition: box-shadow 0.3s ease;
+    bottom: 25px;
+    left: 220px;
   }
-  #trash.dragover {
-    box-shadow: 0 0 25px 6px #6c63ff;
-  }
-
-  /* Навигация */
   .nav {
     position: absolute;
     bottom: 25px;
-    left: 30px;
-    right: 30px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 0 30px;
+    box-sizing: border-box;
   }
   .btn {
-    padding: 12px 26px;
+    padding: 14px 28px;
     background: #6c63ff;
     color: white;
-    border-radius: 30px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    box-shadow: 0 6px 14px rgba(108, 99, 255, 0.4);
-    transition: background 0.3s, box-shadow 0.3s;
-    user-select: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   .btn:hover {
     background: #554ee0;
     box-shadow: 0 8px 20px rgba(85, 78, 224, 0.6);
   }
-
-  /* Анимации */
   @keyframes fadeIn {
-    from {opacity: 0;transform: scale(0.95);}
-    to {opacity: 1;transform: scale(1);}
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
   }
   @keyframes smoke {
-    0% {transform: translateY(0) scale(1);opacity: 0.8;}
-    100% {transform: translateY(-40px) scale(1.3);opacity: 0;}
-  }
-
-  /* Адаптив */
-  @media (max-width: 400px) {
-    .page {
-      width: 95vw;
-      min-height: 750px;
-      padding: 25px 20px 60px;
-    }
-    #person {
-      width: 100px;
-      height: 150px;
-      margin-bottom: 20px;
-    }
-    #cigarette, #soda {
-      width: 40px;
-      height: 24px;
-    }
-    #trash {
-      width: 70px;
-      height: 70px;
-      bottom: 25px;
-      right: 20px;
-    }
-    .btn {
-      padding: 10px 22px;
-      font-size: 0.9rem;
-    }
+    0% {transform: translateY(0) scale(1); opacity: 0.8;}
+    100% {transform: translateY(-40px) scale(1.3); opacity: 0;}
   }
 </style>
 </head>
@@ -181,14 +124,11 @@
 <div class="page">
   <h2>🚭 Помоги убрать вредные привычки</h2>
   <p>Перетащи объекты в корзину, чтобы персонаж стал здоровым.</p>
-
   <div id="person"></div>
+  <div id="cigarette" class="object" draggable="true" tabindex="0" aria-label="Сигарета"></div>
+  <div id="soda" class="object" draggable="true" tabindex="0" aria-label="Бутылка с содой"></div>
   <div id="smoke"></div>
-  <div id="cigarette" class="object" draggable="true"></div>
-  <div id="soda" class="object" draggable="true"></div>
-
   <div id="trash"></div>
-
   <div class="nav">
     <a class="btn" href="page2.html">← Назад</a>
     <a class="btn" href="page4.html">Дальше →</a>
@@ -196,31 +136,71 @@
 </div>
 
 <script>
-  const objects = document.querySelectorAll('.object');
-  const trash = document.getElementById('trash');
-  const smoke = document.getElementById('smoke');
+const objects = document.querySelectorAll('.object');
+const trash = document.getElementById('trash');
+const smoke = document.getElementById('smoke');
 
-  // Подсветка корзины при dragover
-  trash.addEventListener('dragover', e => {
-    e.preventDefault();
-    trash.classList.add('dragover');
+// Мышиный drag-n-drop
+objects.forEach(obj => {
+  obj.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('text/plain', obj.id);
+  });
+});
+
+trash.addEventListener('dragover', e => e.preventDefault());
+trash.addEventListener('drop', e => {
+  e.preventDefault();
+  const id = e.dataTransfer.getData('text/plain');
+  const obj = document.getElementById(id);
+  obj.style.display = 'none';
+  if (id === 'cigarette') smoke.style.display = 'none';
+  alert('🎉 Отлично! Объект убран.');
+});
+
+// Поддержка drag на мобильных (тач)
+objects.forEach(obj => {
+  let offsetX, offsetY;
+
+  obj.addEventListener('touchstart', e => {
+    const touch = e.touches[0];
+    offsetX = touch.clientX - obj.getBoundingClientRect().left;
+    offsetY = touch.clientY - obj.getBoundingClientRect().top;
+    obj.style.position = 'fixed';
+    obj.style.zIndex = 1000;
+    obj.style.touchAction = 'none';
   });
 
-  trash.addEventListener('dragleave', e => {
-    trash.classList.remove('dragover');
+  obj.addEventListener('touchmove', e => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    obj.style.left = (touch.clientX - offsetX) + 'px';
+    obj.style.top = (touch.clientY - offsetY) + 'px';
   });
 
-  // При drop прячем объект и дым
-  trash.addEventListener('drop', e => {
-    e.preventDefault();
-    trash.classList.remove('dragover');
-    const id = e.dataTransfer.getData('text/plain');
-    const obj = document.getElementById(id);
-    if (obj) {
-      obj.style.transition = 'opacity 0.5s';
-      obj.style.opacity = '0';
-      setTimeout(() => {
-        obj.style.display = 'none';
-      }, 500);
+  obj.addEventListener('touchend', e => {
+    const trashRect = trash.getBoundingClientRect();
+    const objRect = obj.getBoundingClientRect();
 
-      if (id
+    if (
+      objRect.right > trashRect.left &&
+      objRect.left < trashRect.right &&
+      objRect.bottom > trashRect.top &&
+      objRect.top < trashRect.bottom
+    ) {
+      obj.style.display = 'none';
+      if (obj.id === 'cigarette') {
+        smoke.style.display = 'none';
+      }
+      alert('🎉 Отлично! Объект убран.');
+    } else {
+      obj.style.position = '';
+      obj.style.left = '';
+      obj.style.top = '';
+      obj.style.zIndex = '';
+      obj.style.touchAction = '';
+    }
+  });
+});
+</script>
+</body>
+</html>

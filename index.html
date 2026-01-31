@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Интерактивная книга</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #f6f9fc, #e9eff5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .book {
+      width: 400px;
+      height: 550px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      padding: 25px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 24px;
+      background: #6c63ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #554ee0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book">
+    <h1>📖 Добро пожаловать</h1>
+    <p>
+      Это интерактивная книга для детей и взрослых.  
+      Здесь вас ждут истории, анимации и игры.
+    </p>
+
+    <p>
+      Листайте страницы и участвуйте в заданиях ✨
+    </p>
+
+    <a class="btn" href="page1.html">Начать →</a>
+  </div>
+
+</body>
+</html>

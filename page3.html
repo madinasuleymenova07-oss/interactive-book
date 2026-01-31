@@ -1,50 +1,226 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Страница 3 - Игра</title>
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(120deg,#fff1eb,#ace0f9);display:flex;justify-content:center;align-items:center;height:100vh;}
-.page{width:500px;height:600px;background:white;border-radius:16px;box-shadow:0 20px 40px rgba(0,0,0,0.15);padding:20px;position:relative;animation:fadeIn 0.8s ease;text-align:center;}
-h2{margin-top:0;}
-#person{width:100px;height:150px;background:url('https://i.imgur.com/1gIhS3N.png') no-repeat center/contain;margin:20px auto;position:relative;}
-.object{width:40px;height:20px;background:#ccc;border-radius:5px;position:absolute;cursor:grab;}
-#cigarette{top:250px;left:200px;}
-#soda{top:300px;left:100px;background:#1e90ff;}
-#smoke{width:60px;height:60px;background:radial-gradient(circle,black 0%,transparent 70%);position:absolute;top:220px;left:195px;border-radius:50%;animation:smoke 1s infinite alternate;pointer-events:none;}
-#trash{width:60px;height:60px;background:url('https://i.imgur.com/6kQfJ2Q.png') no-repeat center/contain;position:absolute;bottom:20px;left:220px;}
-.nav{position:absolute;bottom:20px;width:100%;display:flex;justify-content:space-between;padding:0 20px;box-sizing:border-box;}
-.btn{padding:10px 18px;background:#6c63ff;color:white;text-decoration:none;border-radius:20px;font-size:14px;}
-@keyframes fadeIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
-@keyframes smoke{0%{transform:translateY(0) scale(1);opacity:0.8;}100%{transform:translateY(-30px) scale(1.2);opacity:0;}}
+  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Comfortaa', cursive, Arial, sans-serif;
+    background: linear-gradient(120deg, #fff1eb, #ace0f9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 15px;
+  }
+
+  .page {
+    width: 90vw;
+    max-width: 550px;
+    min-height: 700px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    padding: 30px 30px 50px;
+    position: relative;
+    animation: fadeIn 0.8s ease;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  h2 {
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #333;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+  }
+
+  /* Персонаж */
+  #person {
+    width: 120px;
+    height: 180px;
+    background: url('https://i.imgur.com/9zGjvgP.png') no-repeat center/contain; /* Пример мужчины с сигаретой у скамейки */
+    margin: 0 auto 25px;
+    position: relative;
+  }
+
+  /* Дым */
+  #smoke {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, transparent 70%);
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    margin-left: -40px;
+    border-radius: 50%;
+    animation: smoke 1.5s infinite alternate;
+    pointer-events: none;
+    filter: blur(3px);
+  }
+
+  /* Объекты для перетаскивания */
+  .object {
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    position: absolute;
+    cursor: grab;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+  }
+  .object:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+  }
+
+  #cigarette {
+    top: 300px;
+    left: 140px;
+    background: url('https://i.imgur.com/4lRxlEJ.png') no-repeat center/contain; /* сигарета */
+  }
+  #soda {
+    top: 360px;
+    left: 230px;
+    background: url('https://i.imgur.com/0GBnJsB.png') no-repeat center/contain; /* бутылка с содой */
+  }
+
+  /* Корзина */
+  #trash {
+    width: 80px;
+    height: 80px;
+    background: url('https://i.imgur.com/6kQfJ2Q.png') no-repeat center/contain;
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    border-radius: 16px;
+    transition: box-shadow 0.3s ease;
+  }
+  #trash.dragover {
+    box-shadow: 0 0 25px 6px #6c63ff;
+  }
+
+  /* Навигация */
+  .nav {
+    position: absolute;
+    bottom: 25px;
+    left: 30px;
+    right: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .btn {
+    padding: 12px 26px;
+    background: #6c63ff;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 6px 14px rgba(108, 99, 255, 0.4);
+    transition: background 0.3s, box-shadow 0.3s;
+    user-select: none;
+  }
+  .btn:hover {
+    background: #554ee0;
+    box-shadow: 0 8px 20px rgba(85, 78, 224, 0.6);
+  }
+
+  /* Анимации */
+  @keyframes fadeIn {
+    from {opacity: 0;transform: scale(0.95);}
+    to {opacity: 1;transform: scale(1);}
+  }
+  @keyframes smoke {
+    0% {transform: translateY(0) scale(1);opacity: 0.8;}
+    100% {transform: translateY(-40px) scale(1.3);opacity: 0;}
+  }
+
+  /* Адаптив */
+  @media (max-width: 400px) {
+    .page {
+      width: 95vw;
+      min-height: 750px;
+      padding: 25px 20px 60px;
+    }
+    #person {
+      width: 100px;
+      height: 150px;
+      margin-bottom: 20px;
+    }
+    #cigarette, #soda {
+      width: 40px;
+      height: 24px;
+    }
+    #trash {
+      width: 70px;
+      height: 70px;
+      bottom: 25px;
+      right: 20px;
+    }
+    .btn {
+      padding: 10px 22px;
+      font-size: 0.9rem;
+    }
+  }
 </style>
 </head>
 <body>
 <div class="page">
-<h2>🚭 Помоги убрать вредные привычки</h2>
-<p>Перетащи объекты в корзину, чтобы персонаж стал здоровым.</p>
-<div id="person"></div>
-<div id="cigarette" class="object" draggable="true"></div>
-<div id="soda" class="object" draggable="true"></div>
-<div id="smoke"></div>
-<div id="trash"></div>
-<div class="nav">
-<a class="btn" href="page2.html">← Назад</a>
-<a class="btn" href="page4.html">Дальше →</a>
+  <h2>🚭 Помоги убрать вредные привычки</h2>
+  <p>Перетащи объекты в корзину, чтобы персонаж стал здоровым.</p>
+
+  <div id="person"></div>
+  <div id="smoke"></div>
+  <div id="cigarette" class="object" draggable="true"></div>
+  <div id="soda" class="object" draggable="true"></div>
+
+  <div id="trash"></div>
+
+  <div class="nav">
+    <a class="btn" href="page2.html">← Назад</a>
+    <a class="btn" href="page4.html">Дальше →</a>
+  </div>
 </div>
-</div>
+
 <script>
-const objects=document.querySelectorAll('.object');const trash=document.getElementById('trash');const smoke=document.getElementById('smoke');
-objects.forEach(obj=>{obj.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',obj.id);});});
-trash.addEventListener('dragover',e=>e.preventDefault());
-trash.addEventListener('drop',e=>{
-  e.preventDefault();
-  const id=e.dataTransfer.getData('text/plain');
-  const obj=document.getElementById(id);
-  obj.style.display='none';
-  if(id==='cigarette') smoke.style.display='none';
-  alert('🎉 Отлично! Объект убран.');
-});
-</script>
-</body>
-</html>
+  const objects = document.querySelectorAll('.object');
+  const trash = document.getElementById('trash');
+  const smoke = document.getElementById('smoke');
+
+  // Подсветка корзины при dragover
+  trash.addEventListener('dragover', e => {
+    e.preventDefault();
+    trash.classList.add('dragover');
+  });
+
+  trash.addEventListener('dragleave', e => {
+    trash.classList.remove('dragover');
+  });
+
+  // При drop прячем объект и дым
+  trash.addEventListener('drop', e => {
+    e.preventDefault();
+    trash.classList.remove('dragover');
+    const id = e.dataTransfer.getData('text/plain');
+    const obj = document.getElementById(id);
+    if (obj) {
+      obj.style.transition = 'opacity 0.5s';
+      obj.style.opacity = '0';
+      setTimeout(() => {
+        obj.style.display = 'none';
+      }, 500);
+
+      if (id

@@ -3,101 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <title>Страница 1</title>
-
 <style>
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:linear-gradient(120deg,#fff1eb,#ace0f9);
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
-    padding:20px;
+    height:100vh;
 }
-
 .page{
-    width:100%;
-    max-width:600px; /* широкое окно как на первой странице */
+    width:400px;
+    height:550px;
     background:white;
-    border-radius:28px;
-    box-shadow:0 25px 50px rgba(0,0,0,0.15);
-    padding:40px 35px 90px;
-    animation:fadeIn 1s ease;
+    border-radius:16px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+    padding:25px;
+    animation:slideIn 0.8s ease;
     position:relative;
-    box-sizing:border-box;
 }
+h2{text-align:center;}
 
-/* Текст */
-h2{
-    text-align:center;
-    font-size:28px;
-    margin-top:0;
-    animation:fadeUp 1s ease;
-}
-p{
-    font-size:18px;
+/* 🔥 АНИМИРОВАННЫЙ ТЕКСТ (эффект печатания) */
+#typedText {
+    font-size:16px;
     line-height:1.6;
-    animation:fadeUp 1.3s ease;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:2px solid #333;
+    width:0;
+    animation: typing 4s steps(70) forwards, cursor 0.6s infinite;
 }
 
-/* Кнопки навигации */
+@keyframes typing {
+    from { width:0; }
+    to { width: 100%; }
+}
+
+@keyframes cursor {
+    50% { border-color: transparent; }
+}
+
 .nav{
     position:absolute;
-    bottom:25px;
+    bottom:20px;
     width:100%;
-    left:0;
     display:flex;
     justify-content:space-between;
-    padding:0 30px;
+    padding:0 20px;
     box-sizing:border-box;
 }
 .btn{
-    padding:12px 22px;
+    padding:10px 18px;
     background:#6c63ff;
     color:white;
     text-decoration:none;
-    border-radius:25px;
-    font-size:16px;
+    border-radius:20px;
+    font-size:14px;
 }
 .btn.disabled{
     background:#ccc;
     pointer-events:none;
 }
-
-/* АНИМАЦИИ */
-@keyframes fadeIn{
-    from{opacity:0; transform:scale(0.97);}
-    to{opacity:1; transform:scale(1);}
-}
-@keyframes fadeUp{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-/* Адаптация телефоны */
-@media (max-width:480px){
-    .page{
-        padding:30px 20px 80px;
-    }
-    h2{font-size:24px;}
-    p{font-size:16px;}
+@keyframes slideIn{
+    from{opacity:0;transform:translateX(40px);}
+    to{opacity:1;transform:translateX(0);}
 }
 </style>
-
 </head>
 <body>
-
 <div class="page">
-    <h2>🌟 Страница 1</h2>
+<h2>🌟 Страница 1</h2>
 
-    <p>Это первая страница нашей интерактивной книги. Теперь текст полностью видимый, а окно стало широким, большим и адаптивным — как на стартовой странице!</p>
+<!-- ✨ АНИМИРОВАННЫЙ ТЕКСТ -->
+<p id="typedText">Это первая страница нашей интерактивной книги. Здесь может быть текст, картинки, задания и игры.</p>
 
-    <div class="nav">
-        <a class="btn disabled" href="#">← Назад</a>
-        <a class="btn" href="page2.html">Дальше →</a>
-    </div>
+<div class="nav">
+<a class="btn disabled" href="#">← Назад</a>
+<a class="btn" href="page2.html">Дальше →</a>
 </div>
-
+</div>
 </body>
 </html>

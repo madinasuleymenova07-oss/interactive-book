@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Страница 1</title>
+
 <style>
 body {
     margin: 0;
@@ -10,38 +11,40 @@ body {
     background: linear-gradient(120deg, #fff1eb, #ace0f9);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px;
     box-sizing: border-box;
 }
 
-/* Адаптивный контейнер страницы */
+/* Увеличенное белое окно */
 .page {
     width: 90%;
-    max-width: 400px;
-    min-height: 300px;     /* Минимальная высота вместо фиксированной */
+    max-width: 420px;
+    min-height: 600px;  /* ↑ стало намного больше */
     background: white;
-    border-radius: 16px;
+    border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    padding: 25px;
+    padding: 30px;
     animation: slideIn 0.8s ease;
-    position: relative;
     box-sizing: border-box;
 }
 
 h2 {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 p {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
+    color: #333;
+    min-height: 200px; /* чтобы текст не съезжал */
 }
 
-/* Навигация фиксируется внизу контейнера, но контейнер растёт */
+/* Навигация */
 .nav {
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     justify-content: space-between;
 }
@@ -52,7 +55,6 @@ p {
     color: white;
     text-decoration: none;
     border-radius: 20px;
-    font-size: 14px;
 }
 
 .btn.disabled {
@@ -61,24 +63,27 @@ p {
 }
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateX(40px); }
-    to   { opacity: 1; transform: translateX(0); }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
+
 <body>
 <div class="page">
+
     <h2>🌟 Страница 1</h2>
+
     <p>
-        Это первая страница нашей интерактивной книги. 
-        Здесь может быть текст, картинки, задания и игры. 
-        Теперь текст не исчезает, потому что блок автоматически растёт.
+        Это первая страница нашей интерактивной книги.
+        Теперь текст полностью видимый, окно стало больше и адаптивное.
     </p>
 
     <div class="nav">
         <a class="btn disabled" href="#">← Назад</a>
         <a class="btn" href="page2.html">Дальше →</a>
     </div>
+
 </div>
 </body>
 </html>

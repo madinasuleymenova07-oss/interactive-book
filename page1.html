@@ -5,39 +5,99 @@
 <title>Страница 1</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(120deg, #fff1eb, #ace0f9);
-    display: flex;
-    justify-content: center;
-    padding-top: 60px;  /* даёт пространство сверху */
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(120deg,#fff1eb,#ace0f9);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
 }
 
-/* ——————————————————————————————
-   ГЛАВНОЕ: БОЛЬШОЕ БЕЛОЕ ОКНО
-—————————————————————————————— */
-.page {
-    width: 90%;               /* адаптивно */
-    max-width: 480px;         /* шире */
-    min-height: 75vh;         /* окно занимает 75% экрана — БОЛЬШОЕ */
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    padding: 30px;
-    box-sizing: border-box;
-}
-
-/* Анимация плавного появления текста */
-.text-animated {
-    opacity: 0;
-    animation: fadeIn 1.2s ease forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+.page{
+    width:100%;
+    max-width:600px; /* широкое окно как на первой странице */
+    background:white;
+    border-radius:28px;
+    box-shadow:0 25px 50px rgba(0,0,0,0.15);
+    padding:40px 35px 90px;
+    animation:fadeIn 1s ease;
+    position:relative;
+    box-sizing:border-box;
 }
 
 /* Текст */
-p
+h2{
+    text-align:center;
+    font-size:28px;
+    margin-top:0;
+    animation:fadeUp 1s ease;
+}
+p{
+    font-size:18px;
+    line-height:1.6;
+    animation:fadeUp 1.3s ease;
+}
+
+/* Кнопки навигации */
+.nav{
+    position:absolute;
+    bottom:25px;
+    width:100%;
+    left:0;
+    display:flex;
+    justify-content:space-between;
+    padding:0 30px;
+    box-sizing:border-box;
+}
+.btn{
+    padding:12px 22px;
+    background:#6c63ff;
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+    font-size:16px;
+}
+.btn.disabled{
+    background:#ccc;
+    pointer-events:none;
+}
+
+/* АНИМАЦИИ */
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.97);}
+    to{opacity:1; transform:scale(1);}
+}
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Адаптация телефоны */
+@media (max-width:480px){
+    .page{
+        padding:30px 20px 80px;
+    }
+    h2{font-size:24px;}
+    p{font-size:16px;}
+}
+</style>
+
+</head>
+<body>
+
+<div class="page">
+    <h2>🌟 Страница 1</h2>
+
+    <p>Это первая страница нашей интерактивной книги. Теперь текст полностью видимый, а окно стало широким, большим и адаптивным — как на стартовой странице!</p>
+
+    <div class="nav">
+        <a class="btn disabled" href="#">← Назад</a>
+        <a class="btn" href="page2.html">Дальше →</a>
+    </div>
+</div>
+
+</body>
+</html>

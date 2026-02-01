@@ -11,79 +11,33 @@ body {
     background: linear-gradient(120deg, #fff1eb, #ace0f9);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 40px 20px;
-    box-sizing: border-box;
+    padding-top: 60px;  /* даёт пространство сверху */
 }
 
-/* Увеличенное белое окно */
+/* ——————————————————————————————
+   ГЛАВНОЕ: БОЛЬШОЕ БЕЛОЕ ОКНО
+—————————————————————————————— */
 .page {
-    width: 90%;
-    max-width: 420px;
-    min-height: 600px;  /* ↑ стало намного больше */
+    width: 90%;               /* адаптивно */
+    max-width: 480px;         /* шире */
+    min-height: 75vh;         /* окно занимает 75% экрана — БОЛЬШОЕ */
     background: white;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     padding: 30px;
-    animation: slideIn 0.8s ease;
     box-sizing: border-box;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
+/* Анимация плавного появления текста */
+.text-animated {
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
 }
 
-p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #333;
-    min-height: 200px; /* чтобы текст не съезжал */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Навигация */
-.nav {
-    margin-top: 40px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.btn {
-    padding: 10px 18px;
-    background: #6c63ff;
-    color: white;
-    text-decoration: none;
-    border-radius: 20px;
-}
-
-.btn.disabled {
-    background: #ccc;
-    pointer-events: none;
-}
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-</style>
-</head>
-
-<body>
-<div class="page">
-
-    <h2>🌟 Страница 1</h2>
-
-    <p>
-        Это первая страница нашей интерактивной книги.
-        Теперь текст полностью видимый, окно стало больше и адаптивное.
-    </p>
-
-    <div class="nav">
-        <a class="btn disabled" href="#">← Назад</a>
-        <a class="btn" href="page2.html">Дальше →</a>
-    </div>
-
-</div>
-</body>
-</html>
+/* Текст */
+p

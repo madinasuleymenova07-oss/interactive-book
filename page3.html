@@ -1,161 +1,177 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Интерактивная страница</title>
+<meta charset="UTF-8" />
+<title>Опасность энергетика</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arimo, sans-serif;
-        background: linear-gradient(#e63946, #2a9d8f);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #b6fcb3, #ffb3b3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 15px;
+  }
 
-    /* Белый блок */
-    .container {
-        width: 850px;
-        height: 520px;
-        background: white;
-        border-radius: 20px;
-        padding: 25px;
-        position: relative;
-        box-shadow: 0 0 20px rgba(0,0,0,0.2);
-        overflow: hidden;
-    }
+  .card {
+    width: 90vw;
+    max-width: 450px;
+    min-height: 650px;
+    background: white;
+    border-radius: 26px;
+    padding: 25px 20px;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
 
-    /* Девочка */
-    .girl {
-        position: absolute;
-        bottom: 0;
-        left: 120px;
-        width: 240px;
-        transition: 0.6s;
-    }
+  h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+  }
 
-    /* Поза упавшая */
-    .girl.fallen {
-        transform: translateY(40px) rotate(90deg);
-    }
+  /* ДЕВОЧКА */
+  #girl {
+    width: 200px;
+    display: block;
+    margin: 20px auto;
+    transition: 0.5s ease;
+  }
 
-    /* Энергетик */
-    .drink {
-        position: absolute;
-        width: 120px;
-        right: 80px;
-        top: 200px;
-        cursor: grab;
-    }
+  /* Падает */
+  .fall {
+    transform: rotate(90deg) translateY(40px);
+  }
 
-    /* Облачко текста */
-    .bubble {
-        position: absolute;
-        top: 40px;
-        left: 150px;
-        width: 280px;
-        background: #ffffff;
-        border-radius: 20px;
-        padding: 15px;
-        font-size: 1.1rem;
-        box-shadow: 0 0 10px rgba(0,0,0,0.15);
-        opacity: 0;
-        transition: 0.3s;
-    }
+  /* ОБЛАЧКО */
+  .bubble {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 12px 18px;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: #444;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    display: none;
+  }
 
-    .bubble.show {
-        opacity: 1;
-    }
+  /* ЭНЕРГЕТИК — перетаскиваем */
+  #energy {
+    width: 90px;
+    position: absolute;
+    bottom: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: grab;
+    touch-action: none;
+  }
 
-    /* Кнопки */
-    .btns {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        display: flex;
-        gap: 20px;
-    }
+  .buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+  }
 
-    button {
-        padding: 10px 20px;
-        font-size: 1rem;
-        border: none;
-        background: #2a9d8f;
-        color: white;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+  .btn {
+    background: #6c63ff;
+    color: white;
+    padding: 12px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+  }
 
-    button:hover {
-        background: #248a7c;
-    }
+  .btn:hover {
+    background: #554ee0;
+  }
 </style>
 </head>
+
 <body>
 
-<div class="container">
-    <!-- Облачко -->
-    <div class="bubble" id="bubble">Что это? Энергетик?..</div>
+<div class="card">
 
-    <!-- Девочка (стоя) -->
-    <img src="img/gfgfgf.jpeg" id="girl" class="girl">
+  <h1>⚡ Опасный энергетик</h1>
 
-    <!-- Энергетик -->
-    <img src="img/energy.png" id="drink" class="drink">
+  <div class="bubble" id="bubble">Мне плохо... 😢</div>
 
-    <div class="btns">
-        <button onclick="page2.html">Назад</button>
-        <button onclick="page4.html">Дальше</button>
-    </div>
+  <img id="girl" src="img/girl1.jpg" alt="Девочка">
+
+  <img id="energy" src="img/energy.jpg" alt="Энергетик">
+
+  <div class="buttons">
+    <a href="index.html" class="btn">← Назад</a>
+    <a href="next.html" class="btn">Дальше →</a>
+  </div>
 </div>
 
 <script>
-    let drink = document.getElementById("drink");
-    let girl = document.getElementById("girl");
-    let bubble = document.getElementById("bubble");
+const girl = document.getElementById("girl");
+const energy = document.getElementById("energy");
+const bubble = document.getElementById("bubble");
 
-    let offsetX, offsetY;
-    let dragging = false;
+let offsetX, offsetY;
 
-    drink.addEventListener("mousedown", function(e) {
-        dragging = true;
-        offsetX = e.offsetX;
-        offsetY = e.offsetY;
-        drink.style.cursor = "grabbing";
-    });
+energy.addEventListener("mousedown", startDrag);
+energy.addEventListener("touchstart", startDrag);
 
-    document.addEventListener("mouseup", function() {
-        dragging = false;
-        drink.style.cursor = "grab";
+function startDrag(e) {
+  e.preventDefault();
+  offsetX = (e.touches ? e.touches[0].clientX : e.clientX) - energy.offsetLeft;
+  offsetY = (e.touches ? e.touches[0].clientY : e.clientY) - energy.offsetTop;
 
-        // Проверка столкновения с девочкой
-        let d = drink.getBoundingClientRect();
-        let g = girl.getBoundingClientRect();
+  document.addEventListener("mousemove", drag);
+  document.addEventListener("mouseup", stopDrag);
 
-        let overlap = !(
-            d.right < g.left ||
-            d.left > g.right ||
-            d.bottom < g.top ||
-            d.top > g.bottom
-        );
+  document.addEventListener("touchmove", drag);
+  document.addEventListener("touchend", stopDrag);
+}
 
-        if (overlap) {
-            girl.classList.add("fallen");
-            bubble.innerHTML = "Мне плохо…";
-            bubble.classList.add("show");
-        }
-    });
+function drag(e) {
+  const x = (e.touches ? e.touches[0].clientX : e.clientX) - offsetX;
+  const y = (e.touches ? e.touches[0].clientY : e.clientY) - offsetY;
 
-    document.addEventListener("mousemove", function(e) {
-        if (dragging) {
-            drink.style.left = (e.pageX - offsetX) + "px";
-            drink.style.top = (e.pageY - offsetY) + "px";
-        }
-    });
+  energy.style.left = x + "px";
+  energy.style.top = y + "px";
+
+  checkCollision();
+}
+
+function stopDrag() {
+  document.removeEventListener("mousemove", drag);
+  document.removeEventListener("mouseup", stopDrag);
+
+  document.removeEventListener("touchmove", drag);
+  document.removeEventListener("touchend", stopDrag);
+}
+
+function checkCollision() {
+  const g = girl.getBoundingClientRect();
+  const e = energy.getBoundingClientRect();
+
+  if (
+    e.right > g.left &&
+    e.left < g.right &&
+    e.bottom > g.top &&
+    e.top < g.bottom
+  ) {
+    girl.src = "img/girl2.jpg";
+    girl.classList.add("fall");
+    bubble.style.display = "block";
+  }
+}
 </script>
 
 </body>

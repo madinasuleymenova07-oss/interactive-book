@@ -1,128 +1,65 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Страница 1</title>
+<meta charset="UTF-8" />
+<title>Лупа с внутренностями</title>
 <style>
-body{
-   margin: 0;
-    font-family: 'Comfortaa', cursive, Arial, sans-serif;
-    background: linear-gradient(120deg, #f6f9fc, #e9eff5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 15px; /* Чтобы на мобильных не упереться в края */
+  .container {
+    position: relative;
+    width: 350px;
   }
 
-  .book {
-    width: 90vw;  /* 90% ширины экрана для адаптивности */
-    max-width: 450px;
-    min-height: 650px;  /* увеличили высоту */
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    padding: 30px 25px 40px;
-    animation: fadeIn 1.2s ease;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto; /* Если контента много, будет скролл */
-  }
-}text-align: center;
-    font-weight: 700;
-    font-size: 2.2rem;
-    margin-bottom: 12px;
-    color: #333;
+  #main-img {
+    width: 100%;
+    border-radius: 15px;
   }
 
-  p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #555;
-    text-align: center;
-    margin-bottom: 30px;
-    max-width: 85%;
+  /* Лупа */
+  .magnifier {
+    position: absolute;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: 350px auto; /* по размеру картинки */
   }
-
-  .btn {
-    display: inline-block;
-    padding: 14px 32px;
-    background: #6c63ff;
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: background 0.3s;
-    box-shadow: 0 6px 12px rgba(108, 99, 255, 0.4);
-    user-select: none;
-  }
-  .btn:hover {
-    background: #554ee0;
-    box-shadow: 0 8px 20px rgba(85, 78, 224, 0.6);
-  }
-h2{text-align:center;}
-
-/* 🔥 АНИМИРОВАННЫЙ ТЕКСТ (эффект печатания) */
-#typedText {
-    font-size:16px;
-    line-height:1.6;
-    white-space:nowrap;
-    overflow:hidden;
-    border-right:2px solid #333;
-    width:0;
-    animation: typing 4s steps(70) forwards, cursor 0.6s infinite;
-}
-
-@keyframes typing {
-    from { width:0; }
-    to { width: 100%; }
-}
-
-@keyframes cursor {
-    50% { border-color: transparent; }
-}
-
-.nav{
-    position:absolute;
-    bottom:20px;
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    padding:0 20px;
-    box-sizing:border-box;
-}
-.btn{
-    padding:10px 18px;
-    background:#6c63ff;
-    color:white;
-    text-decoration:none;
-    border-radius:20px;
-    font-size:14px;
-}
-.btn.disabled{
-    background:#ccc;
-    pointer-events:none;
-}
-@keyframes slideIn{
-    from{opacity:0;transform:translateX(40px);}
-    to{opacity:1;transform:translateX(0);}
-}
 </style>
 </head>
+
 <body>
-<div class="page">
-<h2>🌟 Страница 1</h2>
 
-<!-- ✨ АНИМИРОВАННЫЙ ТЕКСТ -->
-<p id="typedText">Это первая страница нашей интерактивной книги. Здесь может быть текст, картинки, задания и игры.</p>
+<div class="container">
+  <img id="main-img" src="normal.jpg" alt="Обычное тело">
 
-<div class="nav">
-<a class="btn disabled" href="#">← Назад</a>
-<a class="btn" href="page2.html">Дальше →</a>
+  <!-- Лупа -->
+  <div id="lens" class="magnifier"></div>
 </div>
-</div>
+
+<script>
+const lens = document.getElementById("lens");
+const img = document.getElementById("main-img");
+
+lens.style.backgroundImage = "url('inside-smoker.jpg')"; // 🔥 картинка с органами
+
+img.addEventListener("mousemove", moveLens);
+img.addEventListener("touchmove", moveLens);
+
+function moveLens(e) {
+  e.preventDefault();
+
+  const rect = img.getBoundingClientRect();
+  const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+  const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+
+  lens.style.left = (x - lens.offsetWidth / 2) + "px";
+  lens.style.top = (y - lens.offsetHeight / 2) + "px";
+
+  lens.style.backgroundPosition = `-${x - 60}px -${y - 60}px`;
+}
+</script>
+
 </body>
 </html>

@@ -106,14 +106,14 @@
 <body>
 
 <div class="card">
-  <h1>🔍 Изучи организм</h1>
+    <h1>🔍 Изучи организм</h1>
   <p>Наведи лупу, чтобы увидеть, что происходит внутри организма курящего человека.</p>
 
   <div class="container">
-    <!-- Обычное тело -->
-    <img id="main-img" src="img/goood.png" alt="Обычное тело">
+    <!-- 🟢 ОБЫЧНОЕ ТЕЛО -->
+    <img id="main-img" src="img/gfgfgf.jpeg" alt="Обычное тело">
 
-    <!-- Лупа -->
+    <!-- 🔴 Внутренности курильщика -->
     <div id="lens" class="magnifier"></div>
   </div>
 
@@ -127,7 +127,7 @@
 const lens = document.getElementById("lens");
 const img = document.getElementById("main-img");
 
-/* 🔥 Картинка внутренних органов */
+// 🔥 Картинка с органами курильщика
 lens.style.backgroundImage = "url('img/bud.jpg')";
 
 img.addEventListener("mousemove", moveLens);
@@ -142,8 +142,13 @@ function moveLens(e) {
 
   lens.style.left = (x - lens.offsetWidth / 2) + "px";
   lens.style.top = (y - lens.offsetHeight / 2) + "px";
+
   lens.style.backgroundPosition = `-${x - 60}px -${y - 60}px`;
 }
+</script>
+
+</body>
+</html>
 </script>
 
 </body>

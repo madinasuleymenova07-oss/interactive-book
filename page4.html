@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<title>Тест</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Nunito', sans-serif;
+        background: linear-gradient(135deg, #b6fcb3, #ffb3b3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 15px;
+    }
+
+    .card {
+        width: 90vw;
+        max-width: 450px;
+        min-height: 650px;
+        background: white;
+        border-radius: 26px;
+        padding: 25px 20px;
+        box-shadow: 0 25px 40px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+    }
+
+    .question {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .answers button {
+        width: 100%;
+        text-align: left;
+        padding: 12px;
+        margin-bottom: 12px;
+        border-radius: 14px;
+        border: none;
+        font-size: 1rem;
+        background: #f1f1f1;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .answers button:hover {
+        background: #e0e0e0;
+    }
+
+    .correct {
+        background: #b6fcb3 !important;
+    }
+
+    .wrong {
+        background: #ffb3b3 !important;
+    }
+
+    .result {
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 10px 0;
+        display: none;
+    }
+
+    .buttons {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-nav {
+        background: #6c63ff;
+        color: white;
+        padding: 12px 26px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-nav:hover {
+        background: #554ee0;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Тест</h1>
+
+    <div id="questionBox"></div>
+
+    <div class="result" id="resultBox"></div>
+
+    <div class="buttons">
+        <a href="index.html" class="btn-nav">← Назад</a>
+        <a href="next.html" class="btn-nav">Дальше →</a>
+    </div>
+</div>
+
+<script>
+const questions = [
+    {
+        q: "1-сұрақ\nШылым шегетін адам әрдайым шаршайды. Ал неғұрлым жиі темекі шегетін болса, соғұрлым…",
+        answers: [
+            "A) Күш-қуаты артады",
+            "B) Өкпесі зақымданып, шаршайды",
+            "C) Сабаққа жақсы шоғырланады",
+            "D) Ұйқысы жақсарады"
+        ],
+        correct: 1
+    },
+    {
+        q: "2-сұрақ\nЭнергетикалық сусынды көп ішкен бала бірде: таңертең тұра алмай, басы ауырып, жүрегі қатты соқты. Неге?",
+        answers: [
+            "A) Энергетик мықты дәрумендер береді",
+            "B) Энергетик уақытша күш береді, кейін ағзаны әлсіретеді",
+            "C) Энергетикті көп ішсе де ештеңе болмайды",
+            "D) Энергетикті ішу спортқа көмектеседі"
+        ],
+        correct: 1
+    },
+    {
+        q: "3-сұрақ\nФастфуд пен майлы тағамдарды жиі жейтін бала ұзақ уақыттан кейін…",
+        answers: [
+            "A) Денең сау, энергиясы мол",
+            "B) Ас қорыту жүйесі бұзылып, түрлі асқазан ауруларына алып келуі мүмкін",
+            "C) Барлық аурулардан қорғалады",
+            "D) Денесі жылдам дамиды"
+        ],
+        correct: 1
+    }
+];
+
+let current = 0;
+
+function loadQuestion() {
+    const box = document.getElementById("questionBox");
+    const q = questions[current];
+
+    box.innerHTML = `
+        <div class="question">${q.q}</div>
+        <div class="answers">
+            ${q.answers.map((ans, i) => 
+                `<button onclick="checkAnswer(${i}, this)">${ans}</button>`
+            ).join("")}
+        </div>
+    `;
+
+    document.getElementById("resultBox").style.display = "none";
+}
+
+function checkAnswer(i, button) {
+    const q = questions[current];
+    const allButtons = document.querySelectorAll(".answers button");
+
+    allButtons.forEach(b => b.disabled = true);
+
+    if (i === q.correct) {
+        button.classList.add("correct");
+        showResult("✔ Дұрыс!", "#4CAF50");
+    } else {
+        button.classList.add("wrong");
+        showResult("✘ Қате!", "#E53935");
+    }
+
+    setTimeout(() => {
+        current++;
+        if (current < questions.length) {
+            loadQuestion();
+        } else {
+            showResult("Тест аяқталды!", "#333");
+        }
+    }, 1200);
+}
+
+function showResult(text, color) {
+    const result = document.getElementById("resultBox");
+    result.style.display = "block";
+    result.style.color = color;
+    result.textContent = text;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>

@@ -7,6 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+  * {
+    touch-action: none;
+  }
+
   body {
     margin: 0;
     font-family: 'Nunito', sans-serif;
@@ -38,7 +42,6 @@
     color: #333;
   }
 
-  /* ДЕВОЧКА */
   #girl {
     width: 200px;
     display: block;
@@ -46,12 +49,10 @@
     transition: 0.5s ease;
   }
 
-  /* Падает */
   .fall {
     transform: rotate(90deg) translateY(40px);
   }
 
-  /* ОБЛАЧКО */
   .bubble {
     position: absolute;
     top: 120px;
@@ -66,7 +67,6 @@
     display: none;
   }
 
-  /* ЭНЕРГЕТИК — перетаскиваем */
   #energy {
     width: 90px;
     position: absolute;
@@ -108,7 +108,6 @@
   <div class="bubble" id="bubble">Мне плохо... 😢</div>
 
   <img id="girl" src="img/girl1.jpg" alt="Девочка">
-
   <img id="energy" src="img/energy.jpg" alt="Энергетик">
 
   <div class="buttons">
@@ -122,15 +121,19 @@ const girl = document.getElementById("girl");
 const energy = document.getElementById("energy");
 const bubble = document.getElementById("bubble");
 
-let offsetX, offsetY;
+let offsetX = 0, offsetY = 0;
 
 energy.addEventListener("mousedown", startDrag);
 energy.addEventListener("touchstart", startDrag);
 
 function startDrag(e) {
   e.preventDefault();
-  offsetX = (e.touches ? e.touches[0].clientX : e.clientX) - energy.offsetLeft;
-  offsetY = (e.touches ? e.touches[0].clientY : e.clientY) - energy.offsetTop;
+
+  const posX = e.touches ? e.touches[0].clientX : e.clientX;
+  const posY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  offsetX = posX - energy.offsetLeft;
+  offsetY = posY - energy.offsetTop;
 
   document.addEventListener("mousemove", drag);
   document.addEventListener("mouseup", stopDrag);
@@ -140,8 +143,11 @@ function startDrag(e) {
 }
 
 function drag(e) {
-  const x = (e.touches ? e.touches[0].clientX : e.clientX) - offsetX;
-  const y = (e.touches ? e.touches[0].clientY : e.clientY) - offsetY;
+  const posX = e.touches ? e.touches[0].clientX : e.clientX;
+  const posY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  const x = posX - offsetX;
+  const y = posY - offsetY;
 
   energy.style.left = x + "px";
   energy.style.top = y + "px";
@@ -152,7 +158,6 @@ function drag(e) {
 function stopDrag() {
   document.removeEventListener("mousemove", drag);
   document.removeEventListener("mouseup", stopDrag);
-
   document.removeEventListener("touchmove", drag);
   document.removeEventListener("touchend", stopDrag);
 }
@@ -171,8 +176,6 @@ function checkCollision() {
     girl.classList.add("fall");
     bubble.style.display = "block";
   }
-  #girl-sick {
-    transform: rotate(90deg);
 }
 </script>
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <title>Лупа — внутренности</title>
 
-<!-- Красивый шрифт -->
+<!-- Шрифт -->
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -49,7 +49,7 @@
     line-height: 1.6;
   }
 
-  /* Контейнер с лупой */
+  /* Контейнер */
   .container {
     position: relative;
     width: 100%;
@@ -99,6 +99,7 @@
   .btn:hover {
     background: #554ee0;
   }
+
 </style>
 </head>
 
@@ -109,7 +110,10 @@
   <p>Наведи лупу, чтобы увидеть, что происходит внутри организма курящего человека.</p>
 
   <div class="container">
-    <img id="main-img" src="normal.jpg" alt="Обычное тело">
+    <!-- Обычное тело -->
+    <img id="main-img" src="img/good.png" alt="Обычное тело">
+
+    <!-- Лупа -->
     <div id="lens" class="magnifier"></div>
   </div>
 
@@ -123,7 +127,8 @@
 const lens = document.getElementById("lens");
 const img = document.getElementById("main-img");
 
-lens.style.backgroundImage = "url('inside-smoker.jpg')";
+/* 🔥 Картинка внутренних органов */
+lens.style.backgroundImage = "url('img/bud.jpg')";
 
 img.addEventListener("mousemove", moveLens);
 img.addEventListener("touchmove", moveLens);

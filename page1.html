@@ -2,11 +2,59 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<title>Лупа с внутренностями</title>
+<title>Лупа — внутренности</title>
+
+<!-- Красивый шрифт -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
+  body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #b6fcb3, #ffb3b3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 15px;
+  }
+
+  .card {
+    width: 90vw;
+    max-width: 450px;
+    min-height: 650px;
+    background: white;
+    border-radius: 26px;
+    padding: 30px 20px;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 18px;
+    font-weight: 700;
+    color: #333;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 85%;
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+
+  /* Контейнер с лупой */
   .container {
     position: relative;
-    width: 350px;
+    width: 100%;
+    max-width: 330px;
+    margin-top: 10px;
   }
 
   #main-img {
@@ -24,25 +72,58 @@
     overflow: hidden;
     pointer-events: none;
     background-repeat: no-repeat;
-    background-size: 350px auto; /* по размеру картинки */
+    background-size: 330px auto;
+  }
+
+  /* Кнопки */
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 25px;
+  }
+
+  .btn {
+    background: #6c63ff;
+    color: white;
+    padding: 12px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 6px 12px rgba(108, 99, 255, 0.4);
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background: #554ee0;
   }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <img id="main-img" src="normal.jpg" alt="Обычное тело">
+<div class="card">
+  <h1>🔍 Изучи организм</h1>
+  <p>Наведи лупу, чтобы увидеть, что происходит внутри организма курящего человека.</p>
 
-  <!-- Лупа -->
-  <div id="lens" class="magnifier"></div>
+  <div class="container">
+    <img id="main-img" src="normal.jpg" alt="Обычное тело">
+    <div id="lens" class="magnifier"></div>
+  </div>
+
+  <div class="buttons">
+    <a href="index.html" class="btn">← Назад</a>
+    <a href="next.html" class="btn">Дальше →</a>
+  </div>
 </div>
 
 <script>
 const lens = document.getElementById("lens");
 const img = document.getElementById("main-img");
 
-lens.style.backgroundImage = "url('inside-smoker.jpg')"; // 🔥 картинка с органами
+lens.style.backgroundImage = "url('inside-smoker.jpg')";
 
 img.addEventListener("mousemove", moveLens);
 img.addEventListener("touchmove", moveLens);
@@ -56,7 +137,6 @@ function moveLens(e) {
 
   lens.style.left = (x - lens.offsetWidth / 2) + "px";
   lens.style.top = (y - lens.offsetHeight / 2) + "px";
-
   lens.style.backgroundPosition = `-${x - 60}px -${y - 60}px`;
 }
 </script>

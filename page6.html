@@ -75,29 +75,28 @@
     <h2>Мальчик обижает девочку… Что ты сделаешь?</h2>
 
     <div class="characters">
-        <img src="img/boy.png" alt="Мальчик">
-        <img src="img/girl.png" alt="Девочка">
-        <img src="img/you.png" alt="Ты">
+    
+     <img id="main-img" src="img/fhobia.html" alt="буллинг">
     </div>
 
-    <button onclick="helpGirl()">🤝 Помочь девочке</button>
-    <button class="red" onclick="bullyGirl()">😈 Обижать вместе</button>
+    <button onclick="helpGirl()">🤝 Қызға көмектесу</button>
+    <button class="red" onclick="bullyGirl()">😈 Бірге кемсіту</button>
 
 </div>
 
 <script>
 function helpGirl() {
     document.getElementById("game").innerHTML = `
-        <h2>Ты помог девочке! ❤️</h2>
+        <h2>Көмектескен үшін рақмет! ❤️</h2>
         <img src="img/hug.png" class="end-img">
-        <p>Вы подружились. Молодец!</p>
+        <p>Енді сіз доссыздар!</p>
     `;
 }
 
 function bullyGirl() {
     document.getElementById("game").innerHTML = `
-        <h2>Ты выбрал плохой путь 😢</h2>
-        <p>Обижать — это неправильно.</p>
+        <h2>Сен дұрыс жолды таңдамадың 😢</h2>
+        <p>Кемсітіп, ренжітуге жол жоқ.</p>
         <button onclick="location.reload()">🔄 Попробовать снова</button>
     `;
 }

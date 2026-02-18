@@ -4,57 +4,108 @@
 <meta charset="UTF-8">
 <title>Видео по клику</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-    body {
-        font-family: 'Comfortaa', sans-serif;
-        background: #f0f0f0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
+body {
+    margin: 0;
+    font-family: 'Comfortaa', sans-serif;
+    background: linear-gradient(135deg, #7fbf7f, #d77a7a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-    .video-container {
-        width: 300px; /* можно менять */
-        cursor: pointer;
-    }
+/* Белая карточка */
+.card {
+    width: 90vw;
+    max-width: 450px;
+    min-height: 650px;
+    background: white;
+    border-radius: 26px;
+    padding: 25px 20px;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
 
-    .video-container img,
-    .video-container video {
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
+/* Заголовок */
+h1 {
+    text-align: center;
+    margin: 0 0 20px 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Контейнер видео */
+.video-container {
+    width: 100%;
+    cursor: pointer;
+}
+
+.video-container img,
+.video-container video {
+    width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Кнопки */
+.buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-nav {
+    background: #6c63ff;
+    color: white;
+    padding: 12px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-nav:hover {
+    background: #554ee0;
+}
 </style>
 </head>
 
 <body>
 
-<div class="video-container">
-    <!-- КАРТИНКА -->
-    <img id="organism.img" src="img/organy.png" alt="organism">
+<div class="card">
 
-    <!-- ВИДЕО -->
-    <video id="organismVideo" style="display:none;">
-        <source src="img/IMG_3204 (3).MP4" type="video/mp4">
-    </video>
-</div>
-<div class="buttons">
+    <h1>Ағзаға әсері</h1>
+
+    <div class="video-container">
+        <!-- КАРТИНКА -->
+        <img id="organismImg" src="img/organy.png" alt="organism">
+
+        <!-- ВИДЕО -->
+        <video id="organismVideo" style="display:none;" controls>
+            <source src="img/IMG_3204 (3).MP4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="buttons">
         <a href="page4.html" class="btn-nav">← Артқа</a>
         <a href="page6.html" class="btn-nav">Алдыға →</a>
     </div>
+
 </div>
 
 <script>
-    const img = document.getElementById("organism.img");
-    const video = document.getElementById("organismVideo");
+const img = document.getElementById("organismImg");
+const video = document.getElementById("organismVideo");
 
-    img.onclick = function () {
-        img.style.display = "none";
-        video.style.display = "block";
-        video.play();
-    };
+img.onclick = function () {
+    img.style.display = "none";
+    video.style.display = "block";
+    video.play();
+};
 </script>
 
 </body>

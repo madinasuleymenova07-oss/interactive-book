@@ -119,7 +119,8 @@ const girl = document.getElementById("girl");
 const energy = document.getElementById("energy");
 const bubble = document.getElementById("bubble");
 
-let offsetX, offsetY;
+let offsetX = 0;
+let offsetY = 0;
 
 energy.addEventListener("mousedown", startDrag);
 energy.addEventListener("touchstart", startDrag);
@@ -127,8 +128,11 @@ energy.addEventListener("touchstart", startDrag);
 function startDrag(e) {
   e.preventDefault();
 
-  offsetX = posX - energy.offsetLeft;
-  offsetY = posY - energy.offsetTop;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  offsetX = clientX - energy.offsetLeft;
+  offsetY = clientY - energy.offsetTop;
 
   document.addEventListener("mousemove", drag);
   document.addEventListener("mouseup", stopDrag);
@@ -138,8 +142,11 @@ function startDrag(e) {
 }
 
 function drag(e) {
-  const x = (e.touches ? e.touches[0].clientX : e.clientX) - offsetX;
-  const y = (e.touches ? e.touches[0].clientY : e.clientY) - offsetY;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  const x = clientX - offsetX;
+  const y = clientY - offsetY;
 
   energy.style.left = x + "px";
   energy.style.top = y + "px";
@@ -150,7 +157,6 @@ function drag(e) {
 function stopDrag() {
   document.removeEventListener("mousemove", drag);
   document.removeEventListener("mouseup", stopDrag);
-
   document.removeEventListener("touchmove", drag);
   document.removeEventListener("touchend", stopDrag);
 }
@@ -165,11 +171,8 @@ function checkCollision() {
     e.bottom > g.top &&
     e.top < g.bottom
   ) {
-    girl.src = "img/girl3.png";  // просто смена картинки
+    girl.src = "img/girl3.png";
     bubble.style.display = "block";
   }
 }
 </script>
- 
-</body>
-</html>

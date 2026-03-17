@@ -25,23 +25,11 @@
         padding: 20px;
         text-align: center;
         box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-        animation: fade 0.3s ease;
-    }
-
-    @keyframes fade {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .characters {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 0;
     }
 
     .characters img {
-        width: 30%;
-        max-width: 100px;
+        width: 70%;
+        max-width: 200px;
     }
 
     button {
@@ -49,7 +37,7 @@
         padding: 14px;
         border: none;
         border-radius: 14px;
-        margin-top: 15px;
+        margin-top: 10px;
         background: #6c63ff;
         color: white;
         font-size: 16px;
@@ -60,9 +48,20 @@
         background: #ff5252;
     }
 
+    .nav-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .nav-buttons button {
+        flex: 1;
+        background: #444;
+    }
+
     .end-img {
         width: 70%;
-        margin: 0 auto;
+        margin: 10px auto;
         display: block;
     }
 </style>
@@ -75,12 +74,17 @@
     <h2>Басқа балалар сыныптасынды кемсітіп жатыр, сенің шешімін?</h2>
 
     <div class="characters">
-    
-     <img id="main-img" src="img/fhobia.html" alt="буллинг">
+        <img src="img/fhobia.png" alt="буллинг">
     </div>
 
     <button onclick="helpGirl()">🤝 Көмектесу</button>
     <button class="red" onclick="bullyGirl()">😈 Бірге кемсіту</button>
+
+    <!-- НАВИГАЦИЯ -->
+    <div class="nav-buttons">
+        <button onclick="history.back()">⬅️ Назад</button>
+        <button onclick="goNext()">➡️ Вперёд</button>
+    </div>
 
 </div>
 
@@ -88,11 +92,13 @@
 function helpGirl() {
     document.getElementById("game").innerHTML = `
         <h2>Көмектескен үшін рақмет! ❤️</h2>
-        <button onclick="history.back(page5.html)">⬅️ Назад</button>
-    <button onclick="location.href='page7.html'">➡️ Вперёд</button>
-`;
-        <img src="img/drug.img" class="end-img">
+        <img src="img/drug.png" class="end-img">
         <p>Енді сіз доссыздар!</p>
+
+        <div class="nav-buttons">
+            <button onclick="history.back()">⬅️ Назад</button>
+            <button onclick="goNext()">➡️ Вперёд</button>
+        </div>
     `;
 }
 
@@ -100,8 +106,19 @@ function bullyGirl() {
     document.getElementById("game").innerHTML = `
         <h2>Сен дұрыс жолды таңдамадың 😢</h2>
         <p>Кемсітіп, ренжітуге жол жоқ.</p>
+
         <button onclick="location.reload()">🔄 Қайталау</button>
+
+        <div class="nav-buttons">
+            <button onclick="history.back(page5.html)">⬅️ Назад</button>
+            <button onclick="goNext(page7.html)">➡️ Вперёд</button>
+        </div>
     `;
+}
+
+// 👉 УКАЖИ СЮДА СЛЕДУЮЩУЮ СТРАНИЦУ
+function goNext(page7.html) {
+    window.location.href = "page2.html"; // поменяй на свой файл
 }
 </script>
 

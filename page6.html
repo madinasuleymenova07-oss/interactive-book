@@ -40,7 +40,10 @@ body {
 
 /* кнопки */
 .buttons {
-    margin: 20px;
+    margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+
 }
 
 button {
@@ -69,8 +72,8 @@ button {
 </div>
 
 <div class="buttons">
-    <button onclick="prevPage(page6.html)">← Артқа</button>
-    <button onclick="nextPage(page8.html)">Алдыға →</button>
+     <a href="page3.html" class="btn-nav">← Артқа</a>
+     <a href="page5.html" class="btn-nav">Алдыға →</a>
 </div>
 
 <script>
